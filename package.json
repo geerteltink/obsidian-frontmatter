@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-frontmatter",
-	"version": "1.0.0",
+	"version": "0.10.0",
 	"description": "Obsidian Front Matter",
 	"main": "main.js",
 	"scripts": {

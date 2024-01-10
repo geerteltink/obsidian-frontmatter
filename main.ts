@@ -88,11 +88,6 @@ export default class FrontMatterPlugin extends Plugin {
 
 					frontmatter["hash"] = hash;
 					frontmatter["modified"] = mtime;
-
-					console.log(
-						`Timestamp updated for "${file.name}"`,
-						frontmatter
-					);
 				}
 			);
 		} catch (e: any) {
