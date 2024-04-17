@@ -28,7 +28,7 @@ jobs:
 
             - name: Create release
               env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
                   gh release create "${{ steps.vars.outputs.tag }}" \
                     --title="${{ steps.vars.outputs.tag }}" \
