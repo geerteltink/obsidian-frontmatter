@@ -15,10 +15,6 @@ jobs:
         steps:
             - uses: actions/checkout@v4
 
-            - name: Set release version
-              id: vars
-              run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
-
             - name: Use Node.js
               uses: actions/setup-node@v4
               with:
