@@ -12,9 +12,9 @@ jobs:
         steps:
             - uses: actions/checkout@v4
 
-			- name: Set release version
-				id: vars
-				run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+            - name: Set release version
+              id: vars
+              run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
 
             - name: Use Node.js
               uses: actions/setup-node@v4
@@ -30,8 +30,8 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
-				  gh release create "${{ steps.vars.outputs.tag }}" \
-				  	--title="${{ steps.vars.outputs.tag }}" \
-					--notes-from-tag \
-					--latest \
-					main.js manifest.json styles.css
+                  gh release create "${{ steps.vars.outputs.tag }}" \
+                    --title="${{ steps.vars.outputs.tag }}" \
+                    --notes-from-tag \
+                    --latest \
+                    main.js manifest.json styles.css
