@@ -1,7 +1,7 @@
 {
 	"id": "obsidian-frontmatter",
 	"name": "Front Matter",
-	"version": "0.13.3",
+	"version": "0.13.4",
 	"minAppVersion": "0.15.0",
 	"description": "Keeps the Front Matter data up to date.",
 	"author": "Geert Eltink",
