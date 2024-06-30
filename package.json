@@ -1,6 +1,6 @@
 {
   "name": "obsidian-frontmatter",
-  "version": "0.15.0",
+  "version": "0.15.1",
   "description": "Obsidian Front Matter",
   "main": "main.js",
   "scripts": {
@@ -12,14 +12,14 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^20.13.0",
-    "@typescript-eslint/eslint-plugin": "^7.11.0",
-    "@typescript-eslint/parser": "^7.11.0",
+    "@types/node": "^20.14.9",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.14.1",
     "builtin-modules": "^4.0.0",
-    "esbuild": "^0.21.4",
+    "esbuild": "^0.22.0",
     "obsidian": "^1.5.7",
-    "tslib": "^2.6.2",
-    "typescript": "^5.4.5"
+    "tslib": "^2.6.3",
+    "typescript": "^5.5.2"
   },
   "dependencies": {
     "date-fns": "^3.6.0",
