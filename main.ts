@@ -118,7 +118,7 @@ function ignoreFile(file: TFile): boolean {
   return false;
 }
 
-function formatTimestamp(input: number): String {
+function formatTimestamp(input: number): string {
   return format(new Date(input), "yyyy-MM-dd'T'HH:mm");
 }
 
