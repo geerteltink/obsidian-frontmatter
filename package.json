@@ -1,6 +1,6 @@
 {
   "name": "obsidian-frontmatter",
-  "version": "0.15.1",
+  "version": "0.15.2",
   "description": "Obsidian Front Matter",
   "main": "main.js",
   "scripts": {
@@ -22,7 +22,7 @@
     "eslint": "^9.8.0",
     "obsidian": "^1.6.6",
     "tslib": "^2.6.3",
-    "typescript": "^5.4.5",
+    "typescript": "^5.5.4",
     "typescript-eslint": "^8.0.0"
   },
   "dependencies": {
