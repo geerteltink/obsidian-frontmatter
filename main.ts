@@ -7,7 +7,12 @@ export default class FrontMatterPlugin extends Plugin {
   async onload() {
     await this.loadSettings();
 
-    this.registerSyncEvents();
+    // As a part of Obsidian's vault initialization process, it will call create for every file.
+    // We need to wait for the workspace to be ready first.
+    // https://docs.obsidian.md/Plugins/Guides/Optimizing+plugin+load+time
+    this.app.workspace.onLayoutReady(() => {
+      this.registerEvents();
+    });
   }
 
   onunload() {
@@ -16,15 +21,15 @@ export default class FrontMatterPlugin extends Plugin {
     }
   }
 
-  registerSyncEvents() {
+  registerEvents() {
     const createRef = this.app.vault.on("create", (file: TAbstractFile) =>
-      this.handleFileChange(file),
+      this.handleFileChange(file)
     );
     this.registerEvent(createRef);
     this.eventRefs.push(createRef);
 
     const modifyRef = this.app.vault.on("modify", (file: TAbstractFile) =>
-      this.handleFileChange(file),
+      this.handleFileChange(file)
     );
     this.registerEvent(modifyRef);
     this.eventRefs.push(modifyRef);
@@ -35,7 +40,7 @@ export default class FrontMatterPlugin extends Plugin {
   async saveSettings() {}
 
   async handleFileChange(
-    file: TAbstractFile,
+    file: TAbstractFile
   ): Promise<
     { status: "ok" } | { status: "error"; error: any } | { status: "ignored" }
   > {
