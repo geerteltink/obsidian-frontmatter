@@ -42,7 +42,7 @@ export default class FrontMatterPlugin extends Plugin {
       return { status: "ignored" };
     }
 
-    const fileContent = await this.app.vault.read(file);
+    const fileContent = await this.app.vault.cachedRead(file);
     let body = fileContent;
     if (/^(---(.|\n)+?---)/.test(body)) {
       body = body.replace(/^(---(.|\n)+?---)/g, ``);
