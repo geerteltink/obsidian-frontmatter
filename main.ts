@@ -5,8 +5,6 @@ export default class FrontMatterPlugin extends Plugin {
   private eventRefs: EventRef[] = [];
 
   async onload() {
-    await this.loadSettings();
-
     // As a part of Obsidian's vault initialization process, it will call create for every file.
     // We need to wait for the workspace to be ready first.
     // https://docs.obsidian.md/Plugins/Guides/Optimizing+plugin+load+time
@@ -34,10 +32,6 @@ export default class FrontMatterPlugin extends Plugin {
     this.registerEvent(modifyRef);
     this.eventRefs.push(modifyRef);
   }
-
-  async loadSettings() {}
-
-  async saveSettings() {}
 
   async handleFileChange(
     file: TAbstractFile
