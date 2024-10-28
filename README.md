@@ -5,7 +5,7 @@ frontmatter data. It also keeps the modified datetime stamp up to date.
 
 The modified datetime stamp is updated only when the content changes. It
 calculates and stores the content hash (without frontmatter data), and stores
-this within the file. Everytime the file changes, the content hash is calculated
+this within the file. Every time the file changes, the content hash is calculated
 and check if it changed.
 
 ## Usage
