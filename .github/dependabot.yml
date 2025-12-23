@@ -5,6 +5,8 @@ updates:
     schedule:
       interval: 'weekly'
     open-pull-requests-limit: 3
+    cooldown:
+      default-days: 16
     labels:
       - 'ci'
 
@@ -15,15 +17,15 @@ updates:
     versioning-strategy: increase
     open-pull-requests-limit: 3
     cooldown:
-      default-days: 5
-      semver-major-days: 30
-      semver-minor-days: 7
-      semver-patch-days: 3
+      default-days: 16
+      semver-major-days: 32
+      semver-minor-days: 24
+      semver-patch-days: 16
     labels:
       - 'build'
     groups:
       dependencies:
         applies-to: version-updates
         update-types:
-          - "minor"
-          - "patch"
+          - 'minor'
+          - 'patch'
