@@ -38,3 +38,6 @@ updates:
         applies-to: version-updates
         patterns:
           - "*"
+    ignore:
+      - dependency-name: "typescript"
+        versions: [">= 7.0.0, < 8.0.0"]
