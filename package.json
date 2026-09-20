@@ -1,6 +1,6 @@
 {
   "name": "obsidian-frontmatter",
-  "version": "0.16.40",
+  "version": "0.16.41",
   "description": "Obsidian Front Matter",
   "main": "main.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "@types/node": "^26.6.1",
     "@typescript-eslint/eslint-plugin": "^8.70.0",
     "@typescript-eslint/parser": "^8.70.0",
-    "builtin-modules": "^5.3.0",
+    "builtin-modules": "^5.4.0",
     "esbuild": "^0.28.2",
     "eslint": "^10.10.0",
     "globals": "^17.12.0",
