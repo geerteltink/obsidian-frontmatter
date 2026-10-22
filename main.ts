@@ -21,20 +21,20 @@ export default class FrontMatterPlugin extends Plugin {
 
   registerEvents() {
     const createRef = this.app.vault.on("create", (file: TAbstractFile) =>
-      this.handleFileChange(file)
+      this.handleFileChange(file),
     );
     this.registerEvent(createRef);
     this.eventRefs.push(createRef);
 
     const modifyRef = this.app.vault.on("modify", (file: TAbstractFile) =>
-      this.handleFileChange(file)
+      this.handleFileChange(file),
     );
     this.registerEvent(modifyRef);
     this.eventRefs.push(modifyRef);
   }
 
   async handleFileChange(
-    file: TAbstractFile
+    file: TAbstractFile,
   ): Promise<
     { status: "ok" } | { status: "error"; error: any } | { status: "ignored" }
   > {
@@ -62,16 +62,20 @@ export default class FrontMatterPlugin extends Plugin {
         const ctime = formatTimestamp(file.stat.ctime);
         const mtime = formatTimestamp(file.stat.mtime);
 
+        if (!frontmatter["id"]) {
+          frontmatter["id"] = crypto.randomUUID();
+        }
+
+        if (!frontmatter["hash"]) {
+          frontmatter["hash"] = hash;
+        }
+
         if (!frontmatter["created"]) {
           frontmatter["created"] = ctime;
         }
 
         if (!frontmatter["modified"]) {
           frontmatter["modified"] = mtime;
-        }
-
-        if (!frontmatter["hash"]) {
-          frontmatter["hash"] = hash;
         }
 
         if (frontmatter["modified"] === mtime || frontmatter["hash"] === hash) {
