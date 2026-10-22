@@ -27,7 +27,6 @@
     "typescript-eslint": "^8.71.2"
   },
   "dependencies": {
-    "date-fns": "^4.4.0",
-    "jssha": "^3.3.2"
+    "date-fns": "^4.4.0"
   }
 }
