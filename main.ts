@@ -1,5 +1,4 @@
 import { EventRef, Notice, Plugin, TAbstractFile, TFile } from "obsidian";
-import { format } from "date-fns/format";
 
 export default class FrontMatterPlugin extends Plugin {
   private eventRefs: EventRef[] = [];
@@ -122,7 +121,10 @@ function ignoreFile(file: TFile): boolean {
 }
 
 function formatTimestamp(input: number): string {
-  return format(new Date(input), "yyyy-MM-dd'T'HH:mm");
+  const date = new Date(input);
+  const pad = (value: number) => (value < 10 ? `0${value}` : String(value));
+
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
 }
 
 async function sha(content: string) {
