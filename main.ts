@@ -42,17 +42,13 @@ export default class FrontMatterPlugin extends Plugin {
     }
 
     const fileContent = await this.app.vault.cachedRead(file);
-    let body = fileContent;
-    if (/^(---(.|\n)+?---)/.test(body)) {
-      body = body.replace(/^(---(.|\n)+?---)/g, ``);
-    }
-
-    if (body.length === 0) {
-      return { status: "ignored" };
-    }
-
+    const { header, body } = splitFrontMatter(fileContent);
+    const hasUuidId =
+      /^id:[ \t]*["']?[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}["']?[ \t]*$/im.test(
+        header,
+      );
     const hash = await sha(body.trim());
-    if (fileContent.contains(hash)) {
+    if (body.length === 0 || (header.includes(hash) && hasUuidId)) {
       return { status: "ignored" };
     }
 
@@ -77,12 +73,10 @@ export default class FrontMatterPlugin extends Plugin {
           frontmatter["modified"] = mtime;
         }
 
-        if (frontmatter["modified"] === mtime || frontmatter["hash"] === hash) {
-          return;
+        if (frontmatter["hash"] !== hash) {
+          frontmatter["hash"] = hash;
+          frontmatter["modified"] = mtime;
         }
-
-        frontmatter["hash"] = hash;
-        frontmatter["modified"] = mtime;
       });
     } catch (e: any) {
       if (e?.name === "YAMLParseError") {
@@ -102,6 +96,26 @@ export default class FrontMatterPlugin extends Plugin {
 
 function isTFile(value: TAbstractFile): value is TFile {
   return "stat" in value;
+}
+
+function splitFrontMatter(content: string): {
+  header: string;
+  body: string;
+} {
+  const match = content.match(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/);
+  if (!match) {
+    return { header: "", body: content };
+  }
+
+  const trailingNewlineLength = match[0].endsWith("\r\n")
+    ? 2
+    : match[0].endsWith("\n")
+      ? 1
+      : 0;
+  return {
+    header: match[0].slice(0, -trailingNewlineLength),
+    body: content.slice(match[0].length),
+  };
 }
 
 function ignoreFile(file: TFile): boolean {
